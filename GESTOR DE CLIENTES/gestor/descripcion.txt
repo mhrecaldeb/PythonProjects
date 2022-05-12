@@ -1,0 +1,1 @@
+# dentro de la carpeta gestor tenemos todo el código fuente
