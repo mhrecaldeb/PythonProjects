@@ -1,8 +1,10 @@
-import xml.etree.ElementTree as ET
+import xml.etree.ElementTree as ET # import xml
 import sqlite3
 
 conn = sqlite3.connect('trackdb.sqlite')
 cur = conn.cursor()
+
+filer = 'c:/Users/mhrec/PythonProjects/Freecodecamp-Python/code3/tracks/'
 
 # Make some fresh tables using executescript()
 cur.executescript('''
@@ -45,7 +47,7 @@ def lookup(d, key):
             found = True
     return None
 
-stuff = ET.parse(fname)
+stuff = ET.parse(filer + fname)
 all = stuff.findall('dict/dict/dict')
 print('Dict count:', len(all))
 for entry in all:
@@ -58,7 +60,7 @@ for entry in all:
     rating = lookup(entry, 'Rating')
     length = lookup(entry, 'Total Time')
 
-    if name is None or artist is None or album is None : 
+    if name is None or artist is None or album is None :
         continue
 
     print(name, artist, album, count, rating, length)
@@ -75,7 +77,7 @@ for entry in all:
 
     cur.execute('''INSERT OR REPLACE INTO Track
         (title, album_id, len, rating, count) 
-        VALUES ( ?, ?, ?, ?, ? )''', 
+        VALUES ( ?, ?, ?, ?, ? )''',
         ( name, album_id, length, rating, count ) )
 
     conn.commit()
