@@ -9,7 +9,7 @@ import glob
 
 
 filenames = []
-folder = "C:/Users/mhrec/OneDrive/Documents/Downloads/Gateway/"
+folder = "C:/Temp/Gateway/"
 # for archivo in range(primer_archivo, ultimo_archivo + 1, 1):
 for file in glob.glob(folder + "*.log"):
     filenames.append(file)
